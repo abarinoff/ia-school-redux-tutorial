@@ -16,12 +16,12 @@ class TodoInput extends Component {
   }
 
   onFormSubmitted = (event) => {
-    const {addTodo} = this.props;
+    const {createTodo} = this.props;
 
     event.preventDefault();
 
     if (this.input.value.trim().length > 0) {
-      addTodo(this.input.value);
+      createTodo(this.input.value);
       this.input.value = ''
     }
   };

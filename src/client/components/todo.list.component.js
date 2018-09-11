@@ -4,25 +4,50 @@ import TodoListItem from './todo.list.item.component';
 class TodoList extends Component {
 
   render() {
-    const { todos, theme } = this.props;
-    const children = todos.length > 0 ? this.renderTodoItems() : this.renderEmptyList();
+    const { isLoading, theme } = this.props;
 
     return (
       <div className="my-3 p-3 rounded box-shadow" style={{backgroundColor: theme.bgColor}}>
         <h5 className="border-bottom border-gray pb-2 mb-0" style={{color: theme.color}}>TODOs</h5>
-        {children}
+
+        {isLoading ? this.renderLoadingProgress() : this.renderTodos()}
       </div>
     );
   }
+
+  componentDidMount() {
+    this.props.fetchTodos();
+  }
+
+  renderLoadingProgress = () => {
+    const { theme } = this.props;
+
+    return (
+      <div className="text-center pt-3">
+        <div className="lds-ellipsis">
+          <div style={{background: theme.color}}/>
+          <div style={{background: theme.color}}/>
+          <div style={{background: theme.color}}/>
+          <div style={{background: theme.color}}/>
+        </div>
+      </div>
+    );
+  };
+
+  renderTodos = () => {
+    const { todos } = this.props;
+
+    return todos.length > 0 ? this.renderTodoItems() : this.renderEmptyList();
+  };
 
   renderTodoItems = () => {
     const { todos, theme, removeTodo } = this.props;
 
     return todos.map(todo => (
       <TodoListItem
-        key={todo.id}
+        key={todo._id}
         theme={theme}
-        removeTodo={() => removeTodo(todo.id)}
+        removeTodo={() => removeTodo(todo._id)}
         {...todo}
       />));
   };

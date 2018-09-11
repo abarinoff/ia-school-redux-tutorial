@@ -1,1 +1,1 @@
-Step 1: Pure redux implementation of simple TODO application
+Step 2: async actions implementation for fetching data from REST Api
