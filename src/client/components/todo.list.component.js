@@ -37,7 +37,7 @@ class TodoList extends Component {
   renderTodos = () => {
     const { todos } = this.props;
 
-    return todos.length > 0 ? this.renderTodoItems() : this.renderEmptyList();
+    return todos && todos.length > 0 ? this.renderTodoItems() : this.renderEmptyList();
   };
 
   renderTodoItems = () => {

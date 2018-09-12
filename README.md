@@ -1,1 +1,1 @@
-Step 2: async actions implementation for fetching data from REST Api
+Step 3: async actions based on redux-api library
